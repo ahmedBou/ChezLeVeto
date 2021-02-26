@@ -35,7 +35,7 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.sendRedirect("login.jsp"); 
+		response.sendRedirect("home.jsp"); 
 	}
 
 	/**
@@ -55,7 +55,7 @@ public class LoginController extends HttpServlet {
 		String password = request.getParameter("pswd");
 
 		if (login.validate(username, password)) {
-			request.getRequestDispatcher("loginSuccess.jsp").forward(request,response);
+			request.getRequestDispatcher("home.jsp").forward(request,response);
 		}else {
 			throw new Exception("Login not successful..");
 		}

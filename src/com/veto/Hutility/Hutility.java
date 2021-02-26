@@ -6,25 +6,28 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 import com.veto.model.Person;
+import com.veto.model.Qa;
 
 public class Hutility {
 	
-	private static SessionFactory sf;
+	private static SessionFactory sessionFactory;
 
-	public static SessionFactory getSessionFactory() {
-		if (sf == null) {
-			try {
-				Configuration con = new Configuration().configure().addAnnotatedClass(Person.class);
 
-				ServiceRegistry reg = new StandardServiceRegistryBuilder().applySettings(con.getProperties()).build();
-				 sf = con.buildSessionFactory(reg);
-				return sf;
+		static {
+	        try {
+	            // Création de la SessionFactory à partir de hibernate.cfg.xml
+	            sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+	        } catch (Throwable ex) {
+	            // Make sure you log the exception, as it might be swallowed
+	            System.err.println("Initial SessionFactory creation failed." + ex);
+	            throw new ExceptionInInitializerError(ex);
+	        }
+	    }
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return sf;
-	}
+	    // public static final ThreadLocal session = new ThreadLocal();
+
+	    public static SessionFactory getSessionFactory() {
+	        return sessionFactory;
+	    }	
 
 }

@@ -9,6 +9,7 @@ public class PersonDao {
 	
 	public void savePerson(Person person) {
 		Transaction tx = null;
+		System.out.println("the name of person is"+person);
 		try(Session session = Hutility.getSessionFactory().openSession()){
 			tx = session.beginTransaction();
 			session.save(person);
@@ -23,10 +24,11 @@ public class PersonDao {
 	}
 	
 	public boolean validate(String nom, String pswd) {
-		Transaction tx = null;
+		Session session= Hutility.getSessionFactory().openSession();
+		Transaction tx = session.getTransaction();
 		Person user = null;
 		
-		try(Session session = Hutility.getSessionFactory().openSession()){
+		try{
 			 tx = session.beginTransaction();
 		       
 		       user = (Person) session.createQuery("FROM Person P WHERE P.nom = :ahmed").setParameter("ahmed", nom)
@@ -42,10 +44,14 @@ public class PersonDao {
 				tx.rollback();
 			}
 			e.printStackTrace();
-		}
+			}finally {
+				if(session != null) {
+					session.close();
+				}
+			}
+			
 		
-		return false;  
-	       
+		return false;  	       
 	      
 	}
 
