@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.veto.dao.PersonDao;
 
@@ -54,7 +55,10 @@ public class LoginController extends HttpServlet {
 		String username = request.getParameter("nom");
 		String password = request.getParameter("pswd");
 
-		if (login.validate(username, password)) {
+		if (login.validate(username, password)!=null) {
+			HttpSession session = request.getSession(true);
+			session.setAttribute("Session_USER",login.validate(username, password) );
+			//request.setAttribute("User_session", session);
 			request.getRequestDispatcher("home.jsp").forward(request,response);
 		}else {
 			throw new Exception("Login not successful..");

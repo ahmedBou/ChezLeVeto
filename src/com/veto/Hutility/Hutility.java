@@ -6,7 +6,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 import com.veto.model.Person;
-import com.veto.model.Qa;
+import com.veto.model.Question;
 
 public class Hutility {
 	

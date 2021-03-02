@@ -44,11 +44,11 @@
 									name="email" required>
 							</div>
 	
-							<div class="form-group">
+	<!-- 						<div class="form-group">
 								<label for="uname">Role:</label> <input type="text"
 									class="form-control" id="role" placeholder="entrez 2 si vous etes patient"
 									name="role" required>
-							</div>
+							</div> -->
 	
 							<div class="form-group">
 								<label for="uname">Password:</label> <input type="password"

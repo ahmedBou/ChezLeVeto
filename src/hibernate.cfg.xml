@@ -9,10 +9,11 @@
         <property name="hibernate.connection.url">jdbc:postgresql://127.0.0.1:5432/vetoDb</property>
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-         <property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
-   	    <!--  <property name="hbm2ddl.auto">create</property> -->
+        <property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
+   	    <property name="hbm2ddl.auto">update</property>
    	    <property name="show_sql">true</property>
-  	    <mapping class="com.veto.model.Person"/>
-   	    <mapping class="com.veto.model.Qa"/>
+  	    <mapping class="com.veto.model.User"/>
+   	    <mapping class="com.veto.model.Question"/>
+   	    <mapping class="com.veto.model.Veto"/>
     </session-factory>
 </hibernate-configuration>

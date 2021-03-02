@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.veto.dao.PersonDao;
 import com.veto.model.Person;
+import com.veto.model.User;
 
 
 @WebServlet("/register")
@@ -38,14 +39,14 @@ public class RegisterController extends HttpServlet {
 		String prenom = request.getParameter("prenom");
 		String email = request.getParameter("email");
 		String pswd = request.getParameter("pswd");
-		int role = Integer.parseInt(request.getParameter("role"));
 
-		Person user = new Person();
+
+		User user = new User();
 		user.setNom(nom);
 		user.setPrenom(prenom);
 		user.setEmail(email);
 		user.setPswd(pswd);
-		user.setRole(role);
+
 
 		registerDao.savePerson(user);
 		

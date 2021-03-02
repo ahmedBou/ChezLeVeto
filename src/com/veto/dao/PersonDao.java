@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import com.veto.Hutility.Hutility;
 import com.veto.model.Person;
+import com.veto.model.User;
 
 public class PersonDao {
 	
@@ -23,19 +24,19 @@ public class PersonDao {
     
 	}
 	
-	public boolean validate(String nom, String pswd) {
+	public Person validate(String nom, String pswd) {
 		Session session= Hutility.getSessionFactory().openSession();
 		Transaction tx = session.getTransaction();
-		Person user = null;
+		Person person = null;
 		
 		try{
 			 tx = session.beginTransaction();
 		       
-		       user = (Person) session.createQuery("FROM Person P WHERE P.nom = :ahmed").setParameter("ahmed", nom)
+		       person = (Person) session.createQuery("FROM Person P WHERE P.nom = :ahmed").setParameter("ahmed", nom)
 						.uniqueResult();
 		       
-		       if(user != null && user.getPswd().equals(pswd)) {
-					return true;
+		       if(person != null && person.getPswd().equals(pswd)) {
+					return person;
 				}
 		       tx.commit();
 
@@ -51,8 +52,22 @@ public class PersonDao {
 			}
 			
 		
-		return false;  	       
+		return null;  	       
 	      
+	}
+	public Person getpersonbyId(Long id) {
+		User user =null;
+		Transaction transaction = null;
+		Session session = Hutility.getSessionFactory().openSession();
+		// start a transaction
+		transaction = session.beginTransaction();
+
+		// get Student entity using get() method
+		user= session.get(User.class, id );
+		
+		// commit transaction
+		transaction.commit();
+		return user;
 	}
 
 }
