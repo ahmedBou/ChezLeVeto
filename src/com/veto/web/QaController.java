@@ -1,6 +1,8 @@
 package com.veto.web;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,8 +12,10 @@ import javax.servlet.http.HttpSession;
 
 import com.veto.dao.PersonDao;
 import com.veto.dao.QaDao;
+import com.veto.dao.ResponseDao;
 import com.veto.model.Person;
 import com.veto.model.Question;
+import com.veto.model.Response;
 import com.veto.model.User;
 
 
@@ -21,9 +25,7 @@ public class QaController extends HttpServlet {
 	
 	QaDao question = new QaDao();
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	ResponseDao initRes = new ResponseDao();
     public QaController() {
         super();
         // TODO Auto-generated constructor stub
@@ -34,8 +36,14 @@ public class QaController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.sendRedirect("home.jsp");
+		HttpSession session = request.getSession();
+		QaDao listOfQ = new QaDao();
+//		listOfQ.getQuestion();
+		List<Question> listQuestions =listOfQ.getQuestion();
+		session.setAttribute("data", listQuestions);
+	
+		request.getRequestDispatcher("home.jsp").forward(request,response);
+		
 	}
 
 	/**
@@ -44,13 +52,14 @@ public class QaController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String ques = request.getParameter("question");
-//		PersonDao user = new PersonDao();
+
 		HttpSession session = request.getSession(true);
-		User session_user = (User) session.getAttribute("Session_USER");
+		Person session_user = (Person) session.getAttribute("Session_USER");
 		Question sendQest = new Question(ques, session_user);
-//		sendQest.setQuestion(ques);
+
 		question.saveQuestion(sendQest);
-		request.getRequestDispatcher("home.jsp").forward(request,response);
+		doGet(request, response);
+		//request.getRequestDispatcher("home.jsp").forward(request,response);
 	}
 	
 }

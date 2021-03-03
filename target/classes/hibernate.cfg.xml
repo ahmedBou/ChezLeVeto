@@ -15,5 +15,6 @@
   	    <mapping class="com.veto.model.User"/>
    	    <mapping class="com.veto.model.Question"/>
    	    <mapping class="com.veto.model.Veto"/>
+   	    <mapping class="com.veto.model.Response"/>
     </session-factory>
 </hibernate-configuration>

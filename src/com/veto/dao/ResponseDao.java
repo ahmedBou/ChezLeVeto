@@ -1,24 +1,27 @@
 package com.veto.dao;
 
 import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.veto.Hutility.Hutility;
-import com.veto.model.Question;
 
+import com.veto.model.Response;
 
+public class ResponseDao {
 
-public class QaDao {
-	
-	public void saveQuestion(Question q) {
+	public ResponseDao() {
+		// TODO Auto-generated constructor stub
+	}
+	public void saveResponse(Response resp) {
 		Session session= Hutility.getSessionFactory().openSession();
 		Transaction tx = session.getTransaction();
 //		System.out.println("the question is "+q);
 		try{
 			tx.begin();
 		
-			session.save(q);
+			session.save(resp);
 
 		    tx.commit();
 		}catch(Exception e) {
@@ -34,15 +37,15 @@ public class QaDao {
 	
 		}
 	
-	public List<Question> getQuestion() {
-		List<Question> listOfQuest = null;
+	public List<Response> getResponse() {
+		List<Response> listOfResp = null;
 		Session session= Hutility.getSessionFactory().openSession();
 		Transaction tx = session.getTransaction();
 //		System.out.println("the question is "+q);
 		try{
 			tx.begin();
 
-			 listOfQuest = session.createQuery("FROM Question", Question.class).list();
+			listOfResp = session.createQuery("FROM Response", Response.class).list();
 			 //System.out.println(listOfQuest.get(0).getQuestion());
 		    tx.commit();
 		}catch(Exception e) {
@@ -55,9 +58,7 @@ public class QaDao {
 					session.close();
 				}
 			}
-		return listOfQuest;
+		return listOfResp;
 	}
 
-	}
-
-
+}

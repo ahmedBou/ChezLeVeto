@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="chat")
+@Table(name="question")
 public class Question {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,18 +23,23 @@ public class Question {
 	@Column(name="question")
 	private String question;
 	
+	
+	public Question () {
+		
+	}
 
-	public Question(String question, User user) {
+	public Question(String question, Person user) {
 		super();
 		this.question = question;
 		this.user = user;
 	}
 
+	
 	@ManyToOne
 	@JoinColumn(name = "fk_user")
-	private User user;
+	private Person user;
 
-	public void setUser(User user) {
+	public void setUser(Person user) {
 		this.user = user;
 	}
 	
@@ -54,9 +59,6 @@ public class Question {
 	public void setQuestion(String question) {
 		this.question = question;
 	}
-
-
-
 
 				
 }

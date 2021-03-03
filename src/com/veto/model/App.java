@@ -1,5 +1,8 @@
 package com.veto.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -8,6 +11,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 import com.veto.dao.PersonDao;
+import com.veto.dao.QaDao;
 
 /**
  * Hello world!
@@ -24,6 +28,15 @@ public class App {
 //		person.setPswd("user");
 
 		//PersD.savePerson(person);
+		
+//		QaDao listOfQ = new QaDao();
+////		listOfQ.getQuestion();
+//		List<Question> listQuestions =listOfQ.getQuestion();
+//		for(Question question : listQuestions) {
+//			System.out.println(question.getQuestion());			
+//		}
+		
+		
 
 //       Configuration con = new Configuration().configure().addAnnotatedClass(Person.class);
 //       

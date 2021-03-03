@@ -11,6 +11,7 @@ import javax.persistence.Id;
 
 
 @Entity
+
 public abstract class Person {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

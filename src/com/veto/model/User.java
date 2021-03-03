@@ -20,6 +20,9 @@ public class User extends Person {
 	@OneToMany(mappedBy="user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Question> question = new ArrayList<Question>();
 	
+	@OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+	private List<RendezVs> rVs = new ArrayList<RendezVs>();
+	
 	public User() {
 		super();	
 	}
@@ -29,10 +32,6 @@ public class User extends Person {
 		// TODO Auto-generated constructor stub
 	}
 
-
-
-
-
 	public List<Question> getQuestion() {
 		return question;
 	}
@@ -41,13 +40,6 @@ public class User extends Person {
 		this.question = question;
 	}
 
-//	public String getAnimal() {
-//		return animal;
-//	}
-//
-//	public void setAnimal(String animal) {
-//		this.animal = animal;
-//	}
 
 
 }
