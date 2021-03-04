@@ -18,15 +18,14 @@
 
 <div class="container">
 	<div class="panel  w3-panel">
-		<div class="panel-heading w3-flat-turquoise">Effectuer un
-			Rendez-vous</div>
+		<div class="panel-heading w3-flat-turquoise">Make an apointement</div>
 		<div class="panel-body">
 			<div class="row">
 				<div class="col-md-6">
 					<form action="<%=request.getContextPath()%>/rendezVs" method="post">
 						<div class="form-group">
-							<label class="control-label">Motif de RDV :</label> <input
-								type="text" class="form-control" name="motifRdv" id="motif">
+							<label class="control-label">La raison du RDV :</label> <input
+								type="text" class="form-control" name="motif" id="motif">
 						</div>
 				</div>
 				<div class='col-md-6'>
@@ -49,10 +48,10 @@
 	
 	
 	<script>
-	$(function() {
-		$('#datetimepicker1').datetimepicker();
-	});
-</script>
+		$(function() {
+			$('#datetimepicker1').datetimepicker();
+		});
+	</script>
 
 
 </body>

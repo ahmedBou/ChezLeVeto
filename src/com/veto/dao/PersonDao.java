@@ -55,7 +55,7 @@ public class PersonDao {
 		return null;  	       
 	      
 	}
-	public Person getpersonbyId(Long id) {
+	public Person getpersonbyId(int id) {
 		User user =null;
 		Transaction transaction = null;
 		Session session = Hutility.getSessionFactory().openSession();

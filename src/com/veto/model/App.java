@@ -12,6 +12,7 @@ import org.hibernate.service.ServiceRegistry;
 
 import com.veto.dao.PersonDao;
 import com.veto.dao.QaDao;
+import com.veto.dao.RdvDao;
 
 /**
  * Hello world!
@@ -19,8 +20,17 @@ import com.veto.dao.QaDao;
  */
 public class App {
 	public static void main(String[] args) {
-
-		PersonDao PersD = new PersonDao();
+		
+		
+		RdvDao rvs = new RdvDao();
+		PersonDao user = new PersonDao();
+		User u = (User) user.getpersonbyId(6);
+		
+		RendezVs rdv = new RendezVs("motif1", u);
+		rvs.saveRdv(rdv);
+		System.out.println(rdv.toString());
+		
+//		PersonDao PersD = new PersonDao();
 //		Person person = new Veto();
 //		person.setNom("mary");
 //		person.setPrenom("jackson");
